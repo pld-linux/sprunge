@@ -1,10 +1,11 @@
 Summary:	Command line Pastebin-like
 Name:		sprunge
-Version:	0.1
-Release:	3
+Version:	0.2
+Release:	1
 License:	GPL
 Group:		Applications/Networking
 URL:		http://sprunge.us/
+Source0:	%{name}.sh
 Requires:	curl
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -15,17 +16,10 @@ command line pastebin.
 %prep
 %setup -q -c -T
 
-%build
-
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_bindir}
-
-cat << 'EOF' > $RPM_BUILD_ROOT%{_bindir}/%{name}
-#!/bin/sh
-exec %{_bindir}/curl -F 'sprunge=<-' http://sprunge.us
-EOF
-chmod +x $RPM_BUILD_ROOT%{_bindir}/*
+install -p %{SOURCE0} $RPM_BUILD_ROOT%{_bindir}/%{name}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
