@@ -1,7 +1,7 @@
 Summary:	Command line Pastebin-like
 Name:		sprunge
 Version:	0.1
-Release:	1
+Release:	2
 License:	GPL
 Group:		Applications
 URL:		http://sprunge.us/
@@ -22,7 +22,7 @@ rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_bindir}
 
 cat << 'EOF' > $RPM_BUILD_ROOT%{_bindir}/sprunge
-%{_bindir}/curl -F 'sprunge=<-' http://sprunge.us
+exec %{_bindir}/curl -F 'sprunge=<-' http://sprunge.us
 EOF
 
 %clean
