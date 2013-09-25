@@ -1,9 +1,9 @@
 Summary:	Command line Pastebin-like
 Name:		sprunge
 Version:	0.1
-Release:	2
+Release:	3
 License:	GPL
-Group:		Applications
+Group:		Applications/Networking
 URL:		http://sprunge.us/
 Requires:	curl
 BuildArch:	noarch
@@ -21,9 +21,11 @@ command line pastebin.
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_bindir}
 
-cat << 'EOF' > $RPM_BUILD_ROOT%{_bindir}/sprunge
+cat << 'EOF' > $RPM_BUILD_ROOT%{_bindir}/%{name}
+#!/bin/sh
 exec %{_bindir}/curl -F 'sprunge=<-' http://sprunge.us
 EOF
+chmod +x $RPM_BUILD_ROOT%{_bindir}/*
 
 %clean
 rm -rf $RPM_BUILD_ROOT
