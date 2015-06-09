@@ -1,6 +1,6 @@
 Summary:	Command line Pastebin-like
 Name:		sprunge
-Version:	0.3
+Version:	0.4
 Release:	1
 License:	GPL
 Group:		Applications/Networking
@@ -8,6 +8,7 @@ URL:		http://sprunge.us/
 Source0:	https://raw.githubusercontent.com/grawity/code/master/net/%{name}
 # Source0-md5:	a8806f1f53e21bb514f02e5ae6c00a54
 Patch0:		shebang.patch
+Patch1:		avoid.patch
 Requires:	attr
 Requires:	curl
 Suggests:	xclip
@@ -22,6 +23,7 @@ command line pastebin.
 %setup -qcT
 install -p %{SOURCE0} .
 %patch0 -p1
+%patch1 -p0
 
 %install
 rm -rf $RPM_BUILD_ROOT

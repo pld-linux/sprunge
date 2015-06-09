@@ -5,7 +5,7 @@
  
  getsel() {
 +	# too easy to put something important onto sprunge
-+	return false
++	return
  	if have xclip; then
  		xclip -out -selection primary
  	elif have xsel; then
